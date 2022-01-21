@@ -247,7 +247,7 @@ class DetailsScreen extends StatelessWidget {
                              padding: EdgeInsets.all(2.0),
                              child: defaultFormField(
                                //username controller
-                               label: 'Full Name',
+                               label: 'Full Nname',
                               
                                prefix: Icons.person,
                                type: TextInputType.name,
