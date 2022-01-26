@@ -15,8 +15,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var phoneController;
-    var number;
+   
     return Scaffold(
       
       body: SafeArea(
@@ -105,9 +104,9 @@ class HomeView extends StatelessWidget {
                                                 ),
                                                 ignoreBlank: false,
                                                 autoValidateMode: AutovalidateMode.onUserInteraction,
-                                                initialValue: number,
+                                               
                                                 selectorTextStyle: const TextStyle(color: Colors.black),
-                                                textFieldController: phoneController,
+                                                
                                                 formatInput: false,
                                                 cursorColor: Colors.black,
                                                 spaceBetweenSelectorAndTextField: 0.1,
@@ -156,62 +155,7 @@ class HomeView extends StatelessWidget {
                     ),
               
                 
-                onPressed: () { 
-                   showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  var _formKey;
-                  return AlertDialog(
-                    content: Stack(
-                      
-                      children: <Widget>[
-                        Positioned(
-                          right: -40.0,
-                          top: -40.0,
-                          child: InkResponse(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: CircleAvatar(
-                              child: Icon(Icons.close),
-                              backgroundColor: Colors.red,
-                            ),
-                          ),
-                        ), Form(
-                          key: _formKey,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.all(6.0),
-                                child: Text("Enter OTP ",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.redAccent[700]
-                                ),),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: TextFormField(),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ElevatedButton(
-                                   style: ElevatedButton.styleFrom(
-                  onPrimary: Colors.red,
-                  shadowColor: Colors.black,
-                  onSurface: Colors.redAccent,
-                  elevation: 30,
-                    primary: Colors.redAccent[700],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    )
-                    ),
-                                  child: Text("Continue",
-                                  style: TextStyle(
-                                    color: Colors.white
-                                  ),),
+                
 
                                   onPressed: () async {
                                            Navigator.pushReplacement(
@@ -219,43 +163,22 @@ class HomeView extends StatelessWidget {
                                                 MaterialPageRoute(
                                                   builder: (context) => DetailsScreen(),
                                                 ));
-                                    if (_formKey.currentState.validate()) {
-                                      _formKey.currentState.save();
-                                      
-                                    }
-                                  },
-                                ),
+                                   
+                                    
+                                  
+                                   }, child: null, ),
                               )
                             ],
                           ),
                         ),
-                        ]
+                       ))]
                         )
-                        );}
-                        );
+                        )
+                        
+              ])))));}
+                       
 
-                },
+                }
                 
-                  child: const Text(
-                    "Get OTP",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                       color: Colors.white70),
-                  ),
-                ),
-              ),
-                          
-                          ],
-                        ),)),
-                     )
-                  ],
-                ))
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+                 
+   
