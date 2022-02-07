@@ -14,7 +14,6 @@ import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 enum MobileVerificationState {
   // ignore: constant_identifier_names
   SHOW_MOBILE_FORM_STATE,
@@ -104,9 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
             MaterialPageRoute(builder: (context) => const HomeScreen()));
       } else {
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailsScreen()));
+            context, MaterialPageRoute(builder: (context) => DetailsScreen()));
       }
     } on FirebaseAuthException catch (e) {
       // ignore: avoid_print
@@ -134,106 +131,93 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 90,
             width: 230,
             child: Card(
-              
-       color:Colors.white,
-       shadowColor:Colors.red,
-      elevation:50,
-      
-       
+              color: Colors.white,
+              shadowColor: Colors.red,
+              elevation: 50,
               clipBehavior: Clip.antiAlias,
               child: Text("Sign ",
-              
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                color: Colors.redAccent[700],
-                fontSize: 75,
-                fontWeight: FontWeight.w700
-          
-              )
-              ),
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.redAccent[700],
+                      fontSize: 75,
+                      fontWeight: FontWeight.w700)),
             ),
           ),
-          
-          SizedBox(height: 90,
+          SizedBox(
+            height: 90,
             width: 230,
+            // ignore: avoid_unnecessary_containers
             child: Container(
-    
               child: Card(
-                color:Colors.white,
-       shadowColor:Colors.red,
-      elevation:50,
+                color: Colors.white,
+                shadowColor: Colors.red,
+                elevation: 50,
                 child: Text("Up",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  color: Colors.redAccent[700],
-                  fontSize: 75,
-                  fontWeight: FontWeight.w700
-              
-                )
-                ),
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        color: Colors.redAccent[700],
+                        fontSize: 75,
+                        fontWeight: FontWeight.w700)),
               ),
             ),
           ),
           SizedBox(height: 80),
-          
-          
-          
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: InternationalPhoneNumberInput(
-                  onInputChanged: (PhoneNumber number) async {
-                    phoneNumber = number.phoneNumber;
-                    final SharedPreferences sharedPreferences =
-                        await SharedPreferences.getInstance();
-                    sharedPreferences.setString(
-                        'phoneNumber', phoneNumber.toString());
-                    print(number.phoneNumber);
-                  },
-                  onInputValidated: (bool value) {
-                    print(value);
-                  },
-                  selectorConfig: const SelectorConfig(
-                    selectorType: PhoneInputSelectorType.DIALOG,
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) async {
+                phoneNumber = number.phoneNumber;
+                final SharedPreferences sharedPreferences =
+                    await SharedPreferences.getInstance();
+                sharedPreferences.setString(
+                    'phoneNumber', phoneNumber.toString());
+                print(number.phoneNumber);
+              },
+              onInputValidated: (bool value) {
+                print(value);
+              },
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+              ),
+              ignoreBlank: false,
+              autoValidateMode: AutovalidateMode.onUserInteraction,
+              initialValue: number,
+              selectorTextStyle: const TextStyle(color: Colors.white),
+              textFieldController: phoneController,
+              formatInput: false,
+              cursorColor: Colors.white,
+              hintText: " Phone Number ",
+              textStyle: TextStyle(color: Colors.white),
+              inputDecoration: InputDecoration(
+                alignLabelWithHint: true,
+                labelText: "Enter Phone Number ",
+                labelStyle: TextStyle(color: Colors.white70),
+                fillColor: Colors.white,
+                errorStyle: TextStyle(color: Colors.white70),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    width: 1.0,
                   ),
-                  ignoreBlank: false,
-                  autoValidateMode: AutovalidateMode.onUserInteraction,
-                  initialValue: number,
-                  selectorTextStyle: const TextStyle(color: Colors.white),
-                  textFieldController: phoneController,
-                  formatInput: false,
-                  cursorColor: Colors.white,
-                  hintText: " Phone Number ",
-                  textStyle: TextStyle(color: Colors.white),
-                  inputDecoration: InputDecoration(
-                    alignLabelWithHint: true,
-                    labelText: "Enter Phone Number ",
-                    labelStyle: TextStyle(color: Colors.white70),
-                    fillColor: Colors.white,
-                    errorStyle: TextStyle(color: Colors.white70),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white,
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  searchBoxDecoration: InputDecoration(
-                    labelText: "Enter Phone Number",
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Colors.white,
-                      width: 1.0,
-                    )),
-                  ),
-                  keyboardType: const TextInputType.numberWithOptions(
-                      signed: true, decimal: true),
-                  onSaved: (PhoneNumber number) {
-                    // ignore: avoid_print
-                    print('On Saved: $number');
-                    setState(() async {});
-                  },
                 ),
               ),
+              searchBoxDecoration: InputDecoration(
+                labelText: "Enter Phone Number",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                  color: Colors.white,
+                  width: 1.0,
+                )),
+              ),
+              keyboardType: const TextInputType.numberWithOptions(
+                  signed: true, decimal: true),
+              onSaved: (PhoneNumber number) {
+                // ignore: avoid_print
+                print('On Saved: $number');
+                setState(() async {});
+              },
+            ),
+          ),
           SizedBox(height: 130),
           SizedBox(
             width: size.width * 0.7,
@@ -248,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 setState(() {
                   showLoading = true;
                 });
-          
+
                 await _auth.verifyPhoneNumber(
                   phoneNumber: phoneNumber.toString(),
                   verificationCompleted: (phoneAuthCredential) async {
@@ -275,15 +259,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   codeAutoRetrievalTimeout: (verificationId) async {},
                 );
               },
-              
-                child: const Text(
-                  "Get OTP",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
+              child: const Text(
+                "Get OTP",
+                style: TextStyle(fontSize: 20, color: Colors.black),
               ),
             ),
-          
-         
+          ),
         ],
       ),
     );
@@ -291,6 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   getOtpFormWidget(context, size) {
     return AlertDialog(
+      // ignore: avoid_unnecessary_containers
       content: Container(
         child: Column(
           children: [
@@ -307,32 +289,30 @@ class _LoginScreenState extends State<LoginScreen> {
             Text(
               "Enter OTP sent to ",
               style: TextStyle(
-                  fontSize: 26, color: Colors.black, fontWeight: FontWeight.w600),
+                  fontSize: 26,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 20),
             Text(
               " $phoneNumber",
               style: TextStyle(
-                  fontSize: 27, color: Colors.black, fontWeight: FontWeight.w800),
+                  fontSize: 27,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w800),
             ),
             const Spacer(
-              flex:3,
+              flex: 3,
             ),
             OTPTextField(
-              
               textFieldAlignment: MainAxisAlignment.spaceAround,
               length: 6,
               width: MediaQuery.of(context).size.width,
               fieldStyle: FieldStyle.underline,
               fieldWidth: 40,
-              style:  TextStyle(
+              style: TextStyle(
                 color: Colors.red,
-                 
-    
               ),
-              
-              
-              
               onChanged: (pin) {
                 // ignore: avoid_print
                 print("Changed: " + pin);
@@ -348,30 +328,24 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(
               width: size.width * 0.8,
-                                height: 50,
-                                
+              height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                                      primary: Colors.redAccent[700],
-                                      onPrimary: Colors.white24,
-                                      shadowColor: Colors.red,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      )
-                                      ),
+                    primary: Colors.redAccent[700],
+                    onPrimary: Colors.white24,
+                    shadowColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )),
                 onPressed: () async {
                   PhoneAuthCredential phoneAuthCredential =
                       PhoneAuthProvider.credential(
                           verificationId: verificationId, smsCode: otp);
-    
+
                   signInWithPhoneAuthCredential(phoneAuthCredential);
                 },
                 child: const Text("VERIFY OTP",
-                
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white
-                )),
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
               ),
             ),
             const Spacer(
@@ -398,8 +372,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 )
               : currentState == MobileVerificationState.SHOW_MOBILE_FORM_STATE
                   ? getMobileFormWidget(context, size)
-                  : getOtpFormWidget(context, size)
-                  ),
+                  : getOtpFormWidget(context, size)),
     ));
   }
 }
