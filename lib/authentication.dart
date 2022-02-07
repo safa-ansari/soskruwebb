@@ -79,7 +79,7 @@ Future<String> signOut() async {
   return 'User signed out';
 }
 
-Future<String> signInWithGoogle() async {
+Future<User?> signInWithGoogle() async {
   // Initialize Firebase
   await Firebase.initializeApp();
   User? user;
